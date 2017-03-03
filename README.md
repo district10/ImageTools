@@ -71,4 +71,4 @@ $ ./PanoMatch.exe -t SIFT -a images/site1.jpg -b images/site2.jpg
 
 02_Matches.svg：
 
-![](02_Matches.svg)
+![](02_Matches.png)
