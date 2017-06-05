@@ -27,10 +27,14 @@ int main ( int argc, char **argv )
     if (
         !img1.Read(imgurl1, true) || !img2.Read(imgurl2, true) ||
         img1.Width() != img2.Width() || img1.Height() != img2.Height()
-    ) { 
+    ) {
         cout << "read image error\n";
-        return 1; 
+        cout << "Usage:\n"
+            << "\t" << argv[0] << "\n"
+            << "\t" << argv[0] << "image1 image2\n";
+        return 1;
     }
+    cout << "input: " << imgurl1 << ", " << imgurl2 << "\n";
 
     FeatureKeypoints keypoints1, keypoints2;
     FeatureDescriptors descriptors1, descriptors2;
