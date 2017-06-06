@@ -27,6 +27,9 @@ int main ( int argc, char **argv )
 
     double shift = 0.0;
     if (argc > 2) { shift = atof(argv[2]); }
+    if (shift > 1) {
+        shift = shift / input.Width();
+    }
     while (shift < 0) { shift += 1.0; }
     while (shift > 1) { shift -= 1.0; }
 
