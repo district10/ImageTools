@@ -8,27 +8,31 @@
 
 using namespace std;
 
-const static BitmapColor<uint8_t> red(255, 0, 0);
-const static BitmapColor<uint8_t> green(0, 255, 0);
-const static BitmapColor<uint8_t> blue(0, 0, 255);
-
 int main ( int argc, char **argv )
 {
     Bitmap input, output;
+    if (argc > 1 && (strcmp(argv[1],"-h")==0||strcmp(argv[1],"--help")==0)) {
+        cout << "Usage:\n\t" << argv[0] 
+            << " <input-image> [<shift(0.0~1.0,+nPixel,-nPixel)>] [<output-image>]\n";
+        return -1;
+    }
 
     string inputUrl  = CMAKE_SOURCE_DIR "/images/site1.jpg";
     if (argc > 1) {  inputUrl = argv[1]; }
     if ( !input.Read(inputUrl, true) ) {
-        cout 
-            << "Usage:\n\t" 
-            << argv[0] << "<input-image> <shift(0.0~1.0)> <output-image>\n";
+        cout << "Error reading '" << inputUrl << "'\n";
         return 1;
     }
 
-    double shift = 0.0;
+    double shift = 0.5;
     if (argc > 2) { shift = atof(argv[2]); }
     if (shift > 1) {
+        // specify center pixel position
         shift = shift / input.Width();
+        shift += 0.5;
+    } else if (shift < -1) {
+        // specify left pixel position
+        shift = (-shift) / input.Width();
     }
     while (shift < 0) { shift += 1.0; }
     while (shift > 1) { shift -= 1.0; }
