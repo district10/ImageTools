@@ -1,6 +1,6 @@
 # ImageTools
 
-Some code (vfeat, image reading/writing) extracted from <https://github.com/colmap/colmap>.
+Some code (vlfeat, image reading/writing) extracted from <https://github.com/colmap/colmap>.
 
 -   ShiftImage：图像移位
 -   SiftMatch：特征匹配
