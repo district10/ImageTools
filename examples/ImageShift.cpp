@@ -27,15 +27,15 @@ int main ( int argc, char **argv )
 
     double shift = 0.0;
     if (argc > 2) { shift = atof(argv[2]); }
-    shift = shift > 1.0 ? 1.0 : shift;
-    shift = shift < 0.0 ? 0.0 : shift;
+    while (shift < 0) { shift += 1.0; }
+    while (shift > 1) { shift -= 1.0; }
 
     string outputUrl = inputUrl + "_shifted.jpg";
     if (argc > 3) { outputUrl = argv[3]; }
 
     output.Allocate(input.Width(), input.Height(), input.IsRGB());
     const int lineBytes = (input.IsRGB() ? 3 : 1) * input.Width();
-    const int offset = lineBytes * shift;
+    const int offset = (input.IsRGB() ? 3 : 1) * (int)(input.Width() * shift);
     for (int i = 0; i < input.Height(); ++i) {
         const uint8_t *line = input.GetScanline(i);
         memcpy(output.GetScanline(i), line+offset, lineBytes-offset);
