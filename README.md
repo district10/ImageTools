@@ -5,7 +5,7 @@ Some code (vlfeat, image reading/writing) extracted from <https://github.com/col
 -   ShiftImage：图像移位
     -   0~1
     -   +CenterPixel
-    -   +LeftPixel
+    -   -LeftPixel
 -   SiftMatch：特征匹配
 -   PanoMatch：特征匹配（2），针对全景图
 
